@@ -55,19 +55,19 @@ public:
         close(epoll_fd);
     }
 
-    void do_read(Context context, YieldData data);  // TODO
+    void await_read(Context context, YieldData data);  // TODO
 
-    void on_read(Node node);  // TODO
+    void do_read(Node node);  // TODO
 
-    void do_write(Context context, YieldData data);  // TODO
+    void await_write(Context context, YieldData data);  // TODO
 
-    void on_write(Node node);  // TODO
+    void do_write(Node node);  // TODO
 
-    void do_accept(Context context, YieldData data);  // TODO
+    void await_accept(Context context, YieldData data);  // TODO
 
-    void on_accept(Node node);  // TODO
+    void do_accept(Node node);  // TODO
 
-    void on_error(Node node);  // TODO
+    void do_error(Node node);  // TODO
 
     void run() override;  // TODO
 
