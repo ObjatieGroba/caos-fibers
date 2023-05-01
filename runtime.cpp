@@ -114,7 +114,7 @@ void EpollScheduler::do_accept(Node node) {
 }
 
 void EpollScheduler::do_error(Node node) {
-    /// Throw exception any in fiber
+    /// Throw runtime_error in fiber
 }
 
 void EpollScheduler::run() {
