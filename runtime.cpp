@@ -120,7 +120,13 @@ void EpollScheduler::do_error(Node node) {
 void EpollScheduler::run() {
     while (true) {
         /// Process all fibers
+        while (!empty()) {
+            run_one();
+        }
         /// If no fd to wait break
+        if (wait_list.empty()) {
+            break;
+        }
         /// Wait any fd
         /// If error do_error
         /// Else if in or out process it
