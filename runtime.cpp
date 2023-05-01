@@ -135,11 +135,14 @@ void EpollScheduler::run() {
 
 namespace Async {
     int accept(int fd, sockaddr * addr, socklen_t * addrlen) {
+        /// Calls await_accept indirectly with scheduler fiber
     }
 
     ssize_t read(int fd, char * buf, size_t size) {
+        /// Calls await_read indirectly with scheduler fiber
     }
 
     ssize_t write(int fd, const char * buf, size_t size) {
+        /// Calls await_write indirectly with scheduler fiber
     }
 }
