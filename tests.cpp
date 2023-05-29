@@ -199,10 +199,10 @@ void test_simple_server_client() {
         int sock = prepare_client_sock(port);
         std::string msg = "Hello, hell!";
         auto w = Async::write(sock, msg.data(), msg.size());
-        assert(w == msg.size());
+        assert(w == (ssize_t)msg.size());
         std::string res(100, '\0');
         auto r = Async::read(sock, res.data(), res.size());
-        assert(r == msg.size());
+        assert(r == (ssize_t)msg.size());
         assert(msg == res.substr(0, msg.size()));
         std::cout << msg << std::endl;
     };
@@ -251,12 +251,12 @@ void test_server_many_clients() {
         std::string msg = "This is text message";
         for (auto && sock : socks) {
             auto w = Async::write(sock, msg.data(), msg.size());
-            assert(w == msg.size());
+            assert(w == (ssize_t)msg.size());
         }
         for (auto && sock : socks) {
             std::string res(100, '\0');
             auto r = Async::read(sock, res.data(), res.size());
-            assert(r == msg.size());
+            assert(r == (ssize_t)msg.size());
             assert(msg == res.substr(0, msg.size()));
         }
         for (auto && sock : socks) {
@@ -306,12 +306,12 @@ void test_server_many_clients2() {
         std::string msg = "This is text message";
         auto w = Async::write(sock, msg.data(), msg.size());
         yield();
-        assert(w == msg.size());
+        assert(w == (ssize_t)msg.size());
         std::string res(100, '\0');
         auto r = Async::read(sock, res.data(), res.size());
         yield();
         yield();
-        assert(r == msg.size());
+        assert(r == (ssize_t)msg.size());
         assert(msg == res.substr(0, msg.size()));
         close(sock);
         yield();
