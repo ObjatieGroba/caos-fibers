@@ -412,7 +412,7 @@ void test_supertest() {
                     last += r;
                 } else {
                     assert(last == 0);
-                    return "";
+                    throw std::runtime_error("EOF");
                 }
             }
         }
@@ -435,9 +435,6 @@ void test_supertest() {
                     try {
                         line = input.get_line();
                     } catch (...) {
-                        break;
-                    }
-                    if (line.empty()) {
                         break;
                     }
                     std::istringstream iss(line);
