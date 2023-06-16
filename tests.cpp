@@ -437,6 +437,9 @@ void test_supertest() {
                     } catch (...) {
                         break;
                     }
+                    if (line.empty()) {
+                        break;
+                    }
                     std::istringstream iss(line);
                     std::string cmd;
                     iss >> cmd;
@@ -461,11 +464,7 @@ void test_supertest() {
                     }
                     oss << '\n';
                     auto res = oss.str();
-                    try {
-                        write_all(client_fd, res.data(), res.size());
-                    } catch (...) {
-                         break;   
-                    }
+                    write_all(client_fd, res.data(), res.size());
                 }
                 close(client_fd);
             };
