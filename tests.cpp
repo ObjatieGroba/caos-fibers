@@ -461,7 +461,11 @@ void test_supertest() {
                     }
                     oss << '\n';
                     auto res = oss.str();
-                    write_all(client_fd, res.data(), res.size());
+                    try {
+                        write_all(client_fd, res.data(), res.size());
+                    } catch (...) {
+                         break;   
+                    }
                 }
                 close(client_fd);
             };
